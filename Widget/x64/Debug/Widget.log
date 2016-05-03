@@ -1,0 +1,3 @@
+﻿  BoarderDecorator.cpp
+c:\users\tal\desktop\shenkar-master\shenkar-master\widget\boarderdecorator.cpp(30): warning C4101: 'shadow': unreferenced local variable
+  Widget.vcxproj -> C:\Users\Tal\Desktop\Shenkar-master\Shenkar-master\x64\Debug\Widget.lib
