@@ -1,0 +1,4 @@
+﻿  ConsoleEventHandler.cpp
+c:\users\tal\desktop\shenkar-master\shenkar-master\consoleeventhandler\consoleeventhandler.cpp(43): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
+c:\users\tal\desktop\shenkar-master\shenkar-master\consoleeventhandler\consoleeventhandler.cpp(109): warning C4018: '<': signed/unsigned mismatch
+  ConsoleEventHandler.vcxproj -> C:\Users\Tal\Desktop\Shenkar-master\Shenkar-master\x64\Debug\ConsoleEventHandler.lib
