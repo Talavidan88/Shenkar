@@ -2,7 +2,7 @@
 
 ComboBox::ComboBox(uint32_t width, std::vector<std::string> entries) : Control(width, DEFAULT_HEIGHT * entries.size(), true, true), _selected(0), _current(0), _isOpen(false), _redrawFlag(false)
 {
-	std::sort(entries.begin(), entries.end());
+	std::sort(entries.begin(), entries.end());		// sort by name.
 	for (uint32_t i = 0; i < entries.size(); ++i)
 		_entries.push_back(new Button(width));
 	_selectedControl = _entries[0];
@@ -35,7 +35,7 @@ size_t ComboBox::getSelectedIndex() const
 void ComboBox::setSelectedIndex(size_t index)
 {
 	if (index >= _entries.size())
-		throw IndexOutOfBounds();
+		throw IndexOutOfBounds();	// Index is out of bounds. throw exception.
 	_selected = index;
 	_selectedControl = _entries[index];
 }
@@ -45,13 +45,13 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 	if (getHidden()) return;
 	if (z <= getLayer())
 	{
-		if (_isOpen)
+		if (_isOpen) // if ComboBox is open, draw all entries.
 		{
 			uint32_t h = this->getCoords().Y;
 			uint32_t counter = 0;
 			for (auto it : _entries)
 			{
-				if (this != Control::getFocus())
+				if (this != Control::getFocus())			//if we lost focus, repaint control black.
 				{
 					if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);
 					it->draw(g, this->getCoords().X, h, z);
@@ -61,11 +61,11 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 				{
 					if (counter == _current)
 					{
-						it->setBackground(Color::Blue);
+						it->setBackground(Color::Blue);		// control is focused. paint blue.
 					}
 					else
 					{
-						if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);
+						if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);	// remove blue paint from unfocused control.
 					}
 					it->draw(g, this->getCoords().X, h, z);
 					h += DEFAULT_HEIGHT;
@@ -74,7 +74,7 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 			}
 			//	g.moveCursor(_selectedControl->GetCoords());
 		}
-		else
+		else	// ComboBox is closed. draw only selected entry.
 		{
 			if (Control::getFocus() == this)
 				_selectedControl->setBackground(Color::Blue);
@@ -84,7 +84,7 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 			g.setForeground(_selectedControl->getForeground());
 			g.write(getCoords().X, getCoords().Y, _selectedControl->getText());
 		}
-		drawBoarder(g, x, y, z);
+		drawBorder(g, x, y, z);
 	}
 }
 

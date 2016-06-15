@@ -1,7 +1,24 @@
 #pragma once
-#define DEFAULT_HEIGHT 2
-#define MessageBox MyMessageBox
 #include "MeathodsExceptions.h"
+#ifdef MessageBox
+#undef MessageBox
+#define MessageBox MyMessageBox
+#endif
+//Default Heigt For Drawing Controls.
+#define DEFAULT_HEIGHT 2
+//Text To Display In Start Of Checklist String
+#define CHECKLIST_TEXT "[ ]"
+//Text To Display In Start Of RadioBox String
+#define RADIOBOX_TEXT "  "
+//Pad Strings With
+#define TEXT_PADDING ' '
+//Mark Box As Checked
+#define BOXCHECK 'X'
+//UnmarkBox
+#define BOXUNCHECK ' '
+
+//ASCII For Border.
+static const char box[] = { '\xDA', '\xBF','\xC0','\xD9','\xB3' ,'\xC4','\xC9','\xBB','\xC8', '\xBC', '\xBA' ,'\xCD' };
 
 enum class Color
 {
@@ -31,5 +48,7 @@ enum class BorderType
 enum class MessageBoxReturn
 {
 	OK,
-	Cancel
+	Cancel,
+	Unclicked
 };
+

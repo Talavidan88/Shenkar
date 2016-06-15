@@ -14,11 +14,11 @@ void Button::setText(std::string value)
 	if (value.length() <= w)
 	{
 		if (w > _value.size())
-			value.insert(value.end(), w - value.size(), ' ');
+			value.insert(value.end(), w - value.size(), TEXT_PADDING);  // Pad string to match width.
 		_value = value;
 	}
 	else
-		throw StringWiderThenWidthOfControl();
+		throw StringWiderThenWidthOfControl(); // if string is wider then control throw exception.
 }
 
 std::string Button::getText(void) const
@@ -38,7 +38,7 @@ void Button::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		g.setBackground(getBackground());
 		g.setForeground(getForeground());
 		g.write(getCoords().X, getCoords().Y, _value);
-		drawBoarder(g, x, y, z);
+		drawBorder(g, x, y, z);
 	}
 }
 

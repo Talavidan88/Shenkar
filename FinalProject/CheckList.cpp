@@ -17,9 +17,9 @@ std::vector<size_t> CheckList::getSelectedIndices() const
 void CheckList::selectIndex(size_t index)
 {
 	if (index > _entries.size())
-		throw IndexOutOfBounds();
+		throw IndexOutOfBounds(); // Index is out of bounds. throw exception.
 	if (std::find(_selected.begin(), _selected.end(), index) != _selected.end())
-		return;
+		return; // index already checked.
 	_selected.push_back(index);
 	std::sort(_selected.begin(), _selected.end());
 	Control* ptr = _entries[index];
@@ -29,10 +29,10 @@ void CheckList::selectIndex(size_t index)
 void CheckList::deselectIndex(size_t index)
 {
 	if (index > _entries.size())
-		throw IndexOutOfBounds();
+		throw IndexOutOfBounds(); // Index is out of bounds. throw exception.
 	auto it = std::find(_selected.begin(), _selected.end(), index);
 	if (it == _selected.end())
-		return;
+		return; // index is uncheckde.
 	_selected.erase(it);
 	Control* ptr = _entries[index];
 	MousePressed(*ptr, 0, 0, 0);
@@ -42,14 +42,14 @@ void CheckList::MousePressed(Control& control, int x, int y, bool isLeft, Contro
 {
 	auto ptr = dynamic_cast<Button*>(&control);
 	auto t = ptr->getText();
-	if (t[1] != 'X')
+	if (t[1] != BOXCHECK)	// not checked?
 	{
-		t[1] = 'X';
+		t[1] = BOXCHECK;	// check it!
 		ptr->setText(t);
 	}
 	else
 	{
-		t[1] = ' ';
+		t[1] = BOXUNCHECK;	// uncheck.
 		ptr->setText(t);
 	}
 }
@@ -122,8 +122,8 @@ void CheckList::setForeground(Color color)
 
 void CheckList::selectOrDeselect(uint32_t index)
 {
-	if (std::find(_selected.begin(), _selected.end(), index) != _selected.end())
-		deselectIndex(index);
+	if (std::find(_selected.begin(), _selected.end(), index) != _selected.end()) 
+		deselectIndex(index);	 // if found in selected vector, deselect.
 	else
-		selectIndex(index);
+		selectIndex(index);		 // else select
 }

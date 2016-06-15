@@ -1,24 +1,11 @@
 ﻿#include "Borders.h"
 #include <iostream>
-
 void drawMe(Graphics& g, uint32_t left, uint32_t top, uint32_t width, uint32_t height, BorderType bt)
 {
 	g.setBackground(Color::Black);
-	int a, col, row;
-	char box[12];
+	int32_t a, col, row;
 	auto style = (static_cast<int>(bt) - 1) * 6;
-	box[0] = '\xDA';//  ┌
-	box[1] = '\xBF';//  ┐
-	box[2] = '\xC0';//  └
-	box[3] = '\xD9';//  ┘
-	box[4] = '\xB3';//  │ 
-	box[5] = '\xC4';//  ─
-	box[6] = '\xC9';//  ╔ 
-	box[7] = '\xBB';//  ╗
-	box[8] = '\xC8';//  ╚
-	box[9] = '\xBC';//  ╝
-	box[10] = '\xBA';// ║
-	box[11] = '\xCD';// ═
+
 
 
 	char tl, tr, bl, br, side, edge, shadow;

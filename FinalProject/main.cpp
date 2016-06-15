@@ -11,9 +11,6 @@
 #include "MessageBox.h"
 using namespace std;
 
-/*
-TODO::Comments
-*/
 struct MyListener : public Button::MouseListener
 {
 	MyListener(Control& c, Control* mbCb) : _c(c), _mbCb(mbCb)
@@ -35,9 +32,9 @@ int main(int argc, char** argv)
 {
 	try
 	{
-		MessageBox mb(10, 25);
+		MessageBox mb(15, 25);
 		mb.setText("Wrong Input!!!");
-		mb.setTitle("TextBox Input Is Invalid!!");
+		mb.setTitle("TextBox Input Is Invalid!");
 		mb.Hide();
 		Label lName(20);
 		lName.setText("Name: ");

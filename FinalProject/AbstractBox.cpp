@@ -3,11 +3,12 @@
 
 AbstractBox::AbstractBox(uint32_t height, uint32_t width, std::vector<std::string> entries, BoxType bt) : Control(width, height * _entries.size(), true, true), _current(0)
 {
+	
 	for (uint32_t i = 0; i < entries.size(); ++i)
 	{
 		if (entries[i].size() > width)
-			throw StringWiderThenWidthOfControl();
-		_entries.push_back(new Button(width));
+			throw StringWiderThenWidthOfControl(); // if string is wider then control throw exception.
+		_entries.push_back(new Button(width));	
 	}
 
 	auto _it = _entries.begin();
@@ -16,9 +17,9 @@ AbstractBox::AbstractBox(uint32_t height, uint32_t width, std::vector<std::strin
 	{
 		std::string t;
 		if (bt == BoxType::CheckList)
-			t = "[ ]";
+			t = CHECKLIST_TEXT;			// if it's a checklist, add Checklist Text
 		else
-			t = "  ";
+			t = RADIOBOX_TEXT;			// if it's a radiobox, add Radiobox Text
 		(*_it)->setText(t + it);
 
 		(*_it)->addListener(*this);
@@ -46,9 +47,9 @@ void AbstractBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		uint32_t counter = 0;
 		for (auto it : _entries)
 		{
-			if (this != Control::getFocus())
+			if (this != Control::getFocus()) //if we lost focus, repaint control black.
 			{
-				if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);
+				if (it->getBackground() == Color::Blue) it->setBackground(Color::Black); 
 				it->draw(g, this->getCoords().X, h, z);
 				h += DEFAULT_HEIGHT;
 			}
@@ -56,25 +57,25 @@ void AbstractBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 			{
 				if (counter == _current)
 				{
-					it->setBackground(Color::Blue);
+					it->setBackground(Color::Blue); // control is focused. paint blue.
 				}
 				else
 				{
-					if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);
+					if (it->getBackground() == Color::Blue) it->setBackground(Color::Black); // remove blue paint from unfocused control.
 				}
 				it->draw(g, this->getCoords().X, h, z);
 				h += DEFAULT_HEIGHT;
 				counter++;
 			}
 		}
-		drawBoarder(g, x, y, z);
+		drawBorder(g, x, y, z);
 	}
 }
 
 
-bool AbstractBox::isTabAble(void)
+bool AbstractBox::isTabAble(void) const
 {
-	if (_current == _entries.size() - 1 || getHidden()) return false;
+	if (_current == _entries.size() - 1 || getHidden()) return false; // if we're done with elements, tab will go to next control.
 	return true;
 }
 
@@ -112,4 +113,9 @@ void AbstractBox::setCoords(uint32_t x, uint32_t y)
 		it->setCoords(x, h);
 		h += DEFAULT_HEIGHT;
 	}
+}
+
+uint32_t AbstractBox::getHeight() const
+{
+	return DEFAULT_HEIGHT * _entries.size();
 }

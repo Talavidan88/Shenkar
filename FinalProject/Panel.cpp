@@ -16,7 +16,7 @@ void Panel::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 	{
 		i->draw(g, x, y, z);
 	}
-	drawBoarder(g, x, y, z);
+	drawBorder(g, x, y, z);
 }
 
 void Panel::addControl(IControl& control, uint32_t x, uint32_t y)
@@ -31,16 +31,10 @@ void Panel::getAllControls(std::vector<Control*>& fill)
 		fill.push_back(dynamic_cast<Control*>(i));
 }
 
-void Panel::setAllControls(std::vector<Control*>& fill)
-{
-	for (uint32_t i = 0; i < fill.size(); ++i)
-		_controls[i] = dynamic_cast<IControl*>(fill[i]);
-}
-
 void Panel::mousePressed(uint32_t x, uint32_t y, bool isLeft)
 {
 	auto t = _controls;
-	std::sort(t.begin(), t.end(), Control::less_than_key());
+	std::sort(t.begin(), t.end(), Control::less_than_key()); // sort by layer, make sure clicked control is top.
 	if (isLeft)
 	{
 		for (auto it : t)

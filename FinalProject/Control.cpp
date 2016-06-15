@@ -34,9 +34,6 @@ void Control::getAllControls(std::vector<Control*>& fill)
 {
 }
 
-void Control::setAllControls(std::vector<Control*>& fill)
-{
-}
 
 bool Control::canGetFocus() const
 {
@@ -74,6 +71,20 @@ uint32_t Control::getCursorPosition(void) const
 	return 0;
 }
 
+uint32_t Control::getWidth(void) const
+{
+	return _width;
+}
+
+uint32_t Control::getHeight(void) const
+{
+	return _height;
+}
+
+void Control::setHeight(uint32_t height)
+{
+	_height = height;
+}
 
 uint32_t Control::getLeft(void) const
 {
@@ -119,6 +130,12 @@ Color Control::getForeground(void) const
 {
 	return _foreground;
 }
+
+bool Control::isTabAble() const
+{
+	return false;
+}
+
 
 void Control::Show()
 {
@@ -169,7 +186,7 @@ Control::~Control()
 {
 }
 
-void Control::drawBoarder(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
+void Control::drawBorder(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 {
 	if (_borderDrawer)
 		_borderDrawer->draw(g, getLeft(), getTop(), getWidth(), getHeight());

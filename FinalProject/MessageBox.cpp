@@ -1,7 +1,8 @@
 #include "MessageBox.h"
+#define OK_BUTTON_WIDTH 2
+#define CANCEL_BUTTON_WIDTH 6
 
-
-MyMessageBox::MyMessageBox(uint32_t height, uint32_t width) : Control(width, height, false, true), _title(width), _text(width), _ok(2), _cancel(6)
+MyMessageBox::MyMessageBox(uint32_t height, uint32_t width) : Control(width, height, false, true), _title(width), _text(width), _ok(OK_BUTTON_WIDTH), _cancel(CANCEL_BUTTON_WIDTH), _mbr(MessageBoxReturn::Unclicked)
 {
 	_ok.setText("OK");
 	_ok.addListener(*this);
@@ -9,7 +10,7 @@ MyMessageBox::MyMessageBox(uint32_t height, uint32_t width) : Control(width, hei
 	_cancel.setText("Cancel");
 	_cancel.addListener(*this);
 
-	setLayersToMax();
+	setLayersToMax();	// show message box top of every control.
 }
 
 
@@ -38,7 +39,7 @@ void MyMessageBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		_text.draw(g, _text.getCoords().X, _text.getCoords().Y, z);
 		_ok.draw(g, _ok.getCoords().X, _ok.getCoords().Y, z);
 		_cancel.draw(g, _cancel.getCoords().X, _cancel.getCoords().Y, z);
-		drawBoarder(g, x, y, z);
+		drawBorder(g, x, y, z);
 	}
 }
 
@@ -81,7 +82,7 @@ void MyMessageBox::Hide()
 void MyMessageBox::setCoords(uint32_t x, uint32_t y)
 {
 	auto h = getHeight();
-	auto btnPos = (y + h - h / 8) < (y + h - 2) ? (y + h - h / 8) : (y + h - 2);
+	auto btnPos = (y + h - h / 8) < (y + h - 2) ? (y + h - h / 8) : (y + h - 2); // calculate buttons Y position inside Messagebox.
 	Control::setCoords(x, y);
 	_title.setCoords(x, y);
 

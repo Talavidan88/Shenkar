@@ -16,7 +16,7 @@ void TextBox::setText(std::string value)
 		_cursorPosition = value.length();
 	}
 	else
-		throw StringWiderThenWidthOfControl();
+		throw StringWiderThenWidthOfControl(); // if string is wider then control throw exception.
 }
 
 void TextBox::setText(std::wstring value)
@@ -32,12 +32,12 @@ void TextBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		g.setBackground(getBackground());
 		g.setForeground(getForeground());
 		g.write(getCoords().X, getCoords().Y, getText());
-		if (this == Control::getFocus())
+		if (this == Control::getFocus())	// if control is focused, show cursor.
 		{
 			g.setCursorVisibility(true);
 			g.moveTo(getCoords().X, getCoords().Y);
 		}
-		drawBoarder(g, x, y, z);
+		drawBorder(g, x, y, z);
 	}
 }
 

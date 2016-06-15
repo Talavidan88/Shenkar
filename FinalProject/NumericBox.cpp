@@ -26,7 +26,7 @@ bool NumericBox::setValue(int32_t value)
 		auto stringW = _value.getWidth();
 		for (uint32_t i = 0; i < stringW / 2; ++i)
 		{
-			temp += " ";
+			temp += TEXT_PADDING;
 		}
 		temp += std::to_string(value);
 		_value.setText(temp);
@@ -50,20 +50,20 @@ void NumericBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		_minBtn.draw(g, _minBtn.getCoords().X, _minBtn.getCoords().Y, z);
 		_value.draw(g, _value.getCoords().X, _value.getCoords().Y, z);
 		_maxBtn.draw(g, _maxBtn.getCoords().X, _maxBtn.getCoords().Y, z);
-		drawBoarder(g, x, y, z);
+		drawBorder(g, x, y, z);
 	}
 }
 
 void NumericBox::mousePressed(uint32_t x, uint32_t y, bool isLeft)
 {
 	if (getHidden()) return;
-	if (isInside(x, y, _maxBtn.getLeft(), _maxBtn.getTop(), _maxBtn.getWidth(), _maxBtn.getHeight()))
+	if (isInside(x, y, _maxBtn.getLeft(), _maxBtn.getTop(), _maxBtn.getWidth(), _maxBtn.getHeight())) // if + pressed
 	{
 		_decOrInc = 1;
 		_maxBtn.mousePressed(x, y, isLeft);
 		Control::setFocus(*this);
 	}
-	if (isInside(x, y, _minBtn.getLeft(), _minBtn.getTop(), _minBtn.getWidth(), _minBtn.getHeight()))
+	if (isInside(x, y, _minBtn.getLeft(), _minBtn.getTop(), _minBtn.getWidth(), _minBtn.getHeight())) // if - pressed
 	{
 		_decOrInc = -1;
 		_maxBtn.mousePressed(x, y, isLeft);

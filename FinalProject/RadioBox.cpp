@@ -7,9 +7,9 @@ void RadioBox::ClearAstrix()
 	for (uint32_t i = 0; i < _entries.size(); ++i , ++it)
 	{
 		if (i == _selected) continue;
-		std::string t = (*it)->getText();
-		if (t[0] == 'X')
-			t[0] = ' ';
+		auto t = (*it)->getText();
+		if (t[0] == BOXCHECK)	// checked?
+			t[0] = BOXUNCHECK;	// uncheck box.
 		(*it)->setText(t);
 	}
 }
@@ -31,7 +31,7 @@ size_t RadioBox::getSelectedIndex() const
 void RadioBox::setSelectedIndex(size_t index)
 {
 	if (index > _entries.size())
-		throw;
+		throw IndexOutOfBounds();	// Index is out of bounds. throw exception.
 	_selected = index;
 	Control* ptr = _entries[_selected];
 	MousePressed(*ptr, 0, 0, 0);
@@ -39,11 +39,11 @@ void RadioBox::setSelectedIndex(size_t index)
 
 void RadioBox::MousePressed(Control& control, int x, int y, bool isLeft, Control* msCb)
 {
-	Button* ptr = dynamic_cast<Button*>(&control);
-	std::string t = ptr->getText();
-	if (t[0] != 'X')
+	auto* ptr = dynamic_cast<Button*>(&control);
+	auto t = ptr->getText();
+	if (t[0] != BOXCHECK) 
 	{
-		t[0] = 'X';
+		t[0] = BOXCHECK;
 		ptr->setText(t);
 	}
 }
@@ -56,9 +56,6 @@ void RadioBox::mousePressed(uint32_t x, uint32_t y, bool isLeft)
 	uint32_t count = 0;
 	for (auto it : _entries)
 	{
-		//it->setCoords(getCoords().X, h);
-		//it->setHeight(getHeight() / _entries.size());
-		//h += getHeight() / _entries.size();
 		if (isInside(x, y, it->getLeft(), it->getTop(), it->getWidth(), it->getHeight()))
 		{
 			it->mousePressed(x, y, isLeft);
