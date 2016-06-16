@@ -32,12 +32,6 @@ enum class Color
 	White
 };
 
-enum class BoxType
-{
-	CheckList,
-	RadioBox
-};
-
 enum class BorderType
 {
 	None,

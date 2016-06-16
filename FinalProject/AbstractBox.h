@@ -18,8 +18,8 @@ protected:
 	//Marks Current Entry.
 	uint32_t _current;
 public:
-	//Constructor. _In: height - height of control, witdh - width of control, entries - text of contorl, bt - type of box { Checklist, RadioBox}.
-	AbstractBox(uint32_t height, uint32_t width, std::vector<std::string> entries, BoxType bt) throw(StringWiderThenWidthOfControl,std::bad_alloc);
+	//Constructor. _In: height - height of control, witdh - width of control, entries - text of contorl, prefixString - string to prefix control.
+	AbstractBox(uint32_t height, uint32_t width, std::vector<std::string> entries, const std::string& prefixString) throw(StringWiderThenWidthOfControl,std::bad_alloc);
 	virtual ~AbstractBox();
 
 

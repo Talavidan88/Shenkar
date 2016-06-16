@@ -14,7 +14,7 @@ void RadioBox::ClearAstrix()
 	}
 }
 
-RadioBox::RadioBox(uint32_t height, uint32_t width, std::vector<std::string> entries) : AbstractBox(height, width, entries, BoxType::RadioBox), _selected(0)
+RadioBox::RadioBox(uint32_t height, uint32_t width, std::vector<std::string> entries) : AbstractBox(height, width, entries, RADIOBOX_TEXT), _selected(0)
 {
 }
 

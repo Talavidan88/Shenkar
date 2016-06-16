@@ -1,7 +1,7 @@
 ﻿#include "AbstractBox.h"
 
 
-AbstractBox::AbstractBox(uint32_t height, uint32_t width, std::vector<std::string> entries, BoxType bt) : Control(width, height * _entries.size(), true, true), _current(0)
+AbstractBox::AbstractBox(uint32_t height, uint32_t width, std::vector<std::string> entries, const std::string& prefixString) : Control(width, height * _entries.size(), true, true), _current(0)
 {
 	
 	for (uint32_t i = 0; i < entries.size(); ++i)
@@ -15,12 +15,7 @@ AbstractBox::AbstractBox(uint32_t height, uint32_t width, std::vector<std::strin
 
 	for (auto it : entries)
 	{
-		std::string t;
-		if (bt == BoxType::CheckList)
-			t = CHECKLIST_TEXT;			// if it's a checklist, add Checklist Text
-		else
-			t = RADIOBOX_TEXT;			// if it's a radiobox, add Radiobox Text
-		(*_it)->setText(t + it);
+		(*_it)->setText(prefixString + it);
 
 		(*_it)->addListener(*this);
 		++_it;

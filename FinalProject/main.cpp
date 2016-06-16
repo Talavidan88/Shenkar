@@ -10,6 +10,13 @@
 #include "Defines.h"
 #include "MessageBox.h"
 using namespace std;
+struct ControlData
+{
+	string _controlType;
+	string _controlName;
+	uint32_t _controlNumber;
+	void* _data;
+};
 
 struct MyListener : public Button::MouseListener
 {
@@ -90,6 +97,8 @@ int main(int argc, char** argv)
 		Control::setFocus(tName);
 		EventEngine engine;
 		engine.run(main);
+		//vector<ControlData> cd;
+		
 	}
 	catch (exception& e)
 	{

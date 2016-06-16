@@ -1,7 +1,7 @@
 #include "CheckList.h"
 
 
-CheckList::CheckList(uint32_t height, uint32_t width, std::vector<std::string> entries) : AbstractBox(height, width, entries, BoxType::CheckList), _selected(0)
+CheckList::CheckList(uint32_t height, uint32_t width, std::vector<std::string> entries) : AbstractBox(height, width, entries, CHECKLIST_TEXT), _selected(0)
 {
 }
 
