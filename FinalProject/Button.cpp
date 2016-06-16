@@ -26,6 +26,7 @@ std::string Button::getText(void) const
 	return _value;
 }
 
+
 void Button::addListener(MouseListener& listener)
 {
 	ml = &listener;

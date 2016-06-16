@@ -44,7 +44,7 @@ void AbstractBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		{
 			if (this != Control::getFocus()) //if we lost focus, repaint control black.
 			{
-				if (it->getBackground() == Color::Blue) it->setBackground(Color::Black); 
+				if (it->getBackground() == Color::Blue) it->setBackground(getBackground()); 
 				it->draw(g, this->getCoords().X, h, z);
 				h += DEFAULT_HEIGHT;
 			}
@@ -56,7 +56,7 @@ void AbstractBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 				}
 				else
 				{
-					if (it->getBackground() == Color::Blue) it->setBackground(Color::Black); // remove blue paint from unfocused control.
+					if (it->getBackground() == Color::Blue) it->setBackground(getBackground()); // remove blue paint from unfocused control.
 				}
 				it->draw(g, this->getCoords().X, h, z);
 				h += DEFAULT_HEIGHT;

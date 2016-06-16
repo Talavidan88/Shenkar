@@ -170,6 +170,9 @@ public:
 	virtual bool getRedrawFlag(void) const;
 
 
+	// Closes ComboBox. - unimplemented.
+	virtual void closeBox();
+
 	// Used to sort by layer.
 	struct less_than_key
 	{

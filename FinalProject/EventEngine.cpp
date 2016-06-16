@@ -2,7 +2,7 @@
 #include <functional>
 
 EventEngine::EventEngine(DWORD input, DWORD output)
-	: _console(GetStdHandle(input)), _graphics(output)
+	: _graphics(output), _console(GetStdHandle(input))
 {
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
@@ -86,5 +86,6 @@ void EventEngine::moveFocus(Control& main, Control* focused)
 		if (++it == controls.end())
 			it = controls.begin();
 	while (!(*it)->canGetFocus());
+	if (focused != *it) focused->closeBox();
 	Control::setFocus(**it);
 }

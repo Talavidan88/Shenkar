@@ -53,7 +53,7 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 			{
 				if (this != Control::getFocus())			//if we lost focus, repaint control black.
 				{
-					if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);
+					if (it->getBackground() == Color::Blue) it->setBackground(getBackground());
 					it->draw(g, this->getCoords().X, h, z);
 					h += DEFAULT_HEIGHT;
 				}
@@ -65,7 +65,7 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 					}
 					else
 					{
-						if (it->getBackground() == Color::Blue) it->setBackground(Color::Black);	// remove blue paint from unfocused control.
+						if (it->getBackground() == Color::Blue) it->setBackground(getBackground());	// remove blue paint from unfocused control.
 					}
 					it->draw(g, this->getCoords().X, h, z);
 					h += DEFAULT_HEIGHT;
@@ -79,7 +79,7 @@ void ComboBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 			if (Control::getFocus() == this)
 				_selectedControl->setBackground(Color::Blue);
 			else
-				_selectedControl->setBackground(Color::Black);
+				_selectedControl->setBackground(getBackground());
 			g.setBackground(_selectedControl->getBackground());
 			g.setForeground(_selectedControl->getForeground());
 			g.write(getCoords().X, getCoords().Y, _selectedControl->getText());
@@ -99,13 +99,7 @@ void ComboBox::MousePressed(Control& control, int x, int y, bool isLeft, Control
 	}
 	else
 	{
-		for (auto it : _entries)
-		{
-			if (it == _selectedControl) continue;
-			it->setLayer(1);
-		}
-		setLayer(1);
-		_isOpen = true;
+		openBox();
 	}
 }
 
@@ -155,24 +149,29 @@ void ComboBox::keyDown(uint32_t keyCode, char character)
 		if (_current > 0)
 		{
 			_current--;
+			Control::setFocus(*this);
 		}
-		if (!_isOpen) _isOpen = true;
-
+		if (!_isOpen)
+			openBox();
 		break;
 	case VK_NUMPAD2:
 	case VK_DOWN:
 		if (_current < _entries.size() - 1)
 		{
 			_current++;
-		}
-		if (!_isOpen) _isOpen = true;
+			Control::setFocus(*this);
 
+		}
+		if (!_isOpen)
+			openBox();
 		break;
 	case VK_SPACE:
 	case VK_RETURN:
-		_selected = _current;
-		_selectedControl = _entries[_selected];
-		MousePressed(*_selectedControl, 0, 0, 0);
+		if (_isOpen) {
+			_selected = _current;
+			_selectedControl = _entries[_selected];
+			MousePressed(*_selectedControl, 0, 0, 0);
+		}
 		break;
 	case VK_TAB:
 		if (_current < _entries.size() - 1)
@@ -228,4 +227,20 @@ uint32_t ComboBox::getHeight() const
 	if (_isOpen)
 		return _entries.size() + 1;
 	return DEFAULT_HEIGHT;
+}
+
+void ComboBox::openBox(void)
+{
+	for (auto it : _entries)
+	{
+		if (it == _selectedControl) continue;
+		it->setLayer(1);
+	}
+	setLayer(1);
+	_isOpen = true;
+}
+
+void ComboBox::closeBox(void)
+{
+	_isOpen = false;
 }

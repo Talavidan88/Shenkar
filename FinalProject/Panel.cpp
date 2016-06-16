@@ -46,6 +46,9 @@ void Panel::mousePressed(uint32_t x, uint32_t y, bool isLeft)
 				if (ptr->getHidden()) continue;
 				ptr->mousePressed(x, y, isLeft);
 				return;
+			}else
+			{
+				ptr->closeBox();
 			}
 		}
 	}

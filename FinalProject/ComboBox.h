@@ -32,14 +32,20 @@ private:
 
 	// Variable to check whether ComboBox needs to be redrawed.
 	bool _redrawFlag;
-
+	
+	// Private function - manages layers and opens ComboBox.
+	void openBox(void);
 public:
 	// Constructor. _In: witdh - width of control, entries - text of contorl.
 	ComboBox(uint32_t width, std::vector<std::string> entries);
 	~ComboBox();
 
+	// Closes ComboBox once user has pressed tab, or clicked outside of ComboBox.
+	void closeBox(void) override;
+
+
 	// Returns selected index
-	size_t getSelectedIndex() const;
+	size_t getSelectedIndex(void) const;
 
 
 	// Select an index. _In: index - index to be selected.
@@ -81,7 +87,7 @@ public:
 
 	// Gets Height of control
 	uint32_t getHeight() const override;
-
+	
 
 	// Returns whether control needs to be redrawed. 
 	bool getRedrawFlag(void) const override;

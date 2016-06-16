@@ -158,6 +158,10 @@ bool Control::getRedrawFlag(void) const
 	return false;
 }
 
+void Control::closeBox()
+{
+}
+
 void Control::setBorder(BorderType bt)
 {
 	switch (bt)

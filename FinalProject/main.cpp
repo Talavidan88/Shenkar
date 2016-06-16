@@ -79,6 +79,10 @@ int main(int argc, char** argv)
 		bSubmit.addListener(listener);
 		bSubmit.setBorder(BorderType::Double);
 		Panel main;
+		cCountry.setBackground(Color::Green);
+		rSex.setBackground(Color::Cyan);
+		nAge.setBackground(Color::Red);
+		clInterests.setBackground(Color::Orange);
 		main.addControl(lName, 1, 2);
 		main.addControl(lAddress, 1, 5);
 		main.addControl(lCountry, 1, 8);
@@ -97,7 +101,6 @@ int main(int argc, char** argv)
 		Control::setFocus(tName);
 		EventEngine engine;
 		engine.run(main);
-		//vector<ControlData> cd;
 		
 	}
 	catch (exception& e)
