@@ -66,6 +66,9 @@ void EventEngine::run(Control& c)
 				}
 				break;
 			}
+		case WINDOW_BUFFER_SIZE_EVENT:
+			redraw = true;
+			break;
 		default:
 			break;
 		}
