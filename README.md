@@ -4,8 +4,8 @@
 
   - Tal Avidan 200776508
   - Ido Algom 201203874
-  - Ital Daskal - 305029118
-  - Tamir Amid - 302774252
+  - Ital Daskal 305029118
+  - Tamir Amid 302774252
 
 ### Notes
  - This project is the final assignment at Shenkar's Methods In Software Engineering. We created a simple API for creating  console based forms using win32 API.
