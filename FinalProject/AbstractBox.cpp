@@ -3,12 +3,11 @@
 
 AbstractBox::AbstractBox(uint32_t height, uint32_t width, std::vector<std::string> entries, const std::string& prefixString) : Control(width, height * _entries.size(), true, true), _current(0)
 {
-	
 	for (uint32_t i = 0; i < entries.size(); ++i)
 	{
 		if (entries[i].size() > width)
 			throw StringWiderThenWidthOfControl(); // if string is wider then control throw exception.
-		_entries.push_back(new Button(width));	
+		_entries.push_back(new Button(width));
 	}
 
 	auto _it = _entries.begin();
@@ -44,7 +43,7 @@ void AbstractBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		{
 			if (this != Control::getFocus()) //if we lost focus, repaint control black.
 			{
-				if (it->getBackground() == Color::Blue) it->setBackground(getBackground()); 
+				if (it->getBackground() == Color::Blue) it->setBackground(getBackground());
 				it->draw(g, this->getCoords().X, h, z);
 				h += DEFAULT_HEIGHT;
 			}

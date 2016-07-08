@@ -14,7 +14,7 @@ void Button::setText(std::string value)
 	if (value.length() <= w)
 	{
 		if (w > _value.size())
-			value.insert(value.end(), w - value.size(), TEXT_PADDING);  // Pad string to match width.
+			value.insert(value.end(), w - value.size(), TEXT_PADDING); // Pad string to match width.
 		_value = value;
 	}
 	else

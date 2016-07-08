@@ -11,7 +11,8 @@ TextBox::~TextBox()
 
 void TextBox::setText(std::string value)
 {
-	if (value.size() <= getWidth()) {
+	if (value.size() <= getWidth())
+	{
 		_value = value;
 		_cursorPosition = value.length();
 	}
@@ -32,7 +33,7 @@ void TextBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 		g.setBackground(getBackground());
 		g.setForeground(getForeground());
 		g.write(getCoords().X, getCoords().Y, getText());
-		if (this == Control::getFocus())	// if control is focused, show cursor.
+		if (this == Control::getFocus()) // if control is focused, show cursor.
 		{
 			g.setCursorVisibility(true);
 			g.moveTo(getCoords().X, getCoords().Y);

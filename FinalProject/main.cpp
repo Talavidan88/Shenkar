@@ -10,6 +10,7 @@
 #include "Defines.h"
 #include "MessageBox.h"
 using namespace std;
+
 struct ControlData
 {
 	string _controlType;
@@ -62,12 +63,12 @@ int main(int argc, char** argv)
 		TextBox tAddress(25);
 		tAddress.setText("221B Baker Street, London");
 		tAddress.setBorder(BorderType::Single);
-		ComboBox cCountry(20, { "Israel", "Great Britain", "United States" });
+		ComboBox cCountry(20, {"Israel", "Great Britain", "United States"});
 		cCountry.setSelectedIndex(1);
 		cCountry.setBorder(BorderType::Single);
-		RadioBox rSex(2, 15, { "Male", "Female" });
+		RadioBox rSex(2, 15, {"Male", "Female"});
 		rSex.setBorder(BorderType::Single);
-		CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
+		CheckList clInterests(3, 15, {"Sports", "Books", "Movies"});
 		clInterests.selectIndex(1);
 		clInterests.setBorder(BorderType::Single);
 		NumericBox nAge(15, 18, 120);
@@ -101,7 +102,6 @@ int main(int argc, char** argv)
 		Control::setFocus(tName);
 		EventEngine engine;
 		engine.run(main);
-		
 	}
 	catch (exception& e)
 	{

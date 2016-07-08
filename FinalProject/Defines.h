@@ -18,7 +18,7 @@
 #define BOXUNCHECK ' '
 
 //ASCII For Border.
-static const char box[] = { '\xDA', '\xBF','\xC0','\xD9','\xB3' ,'\xC4','\xC9','\xBB','\xC8', '\xBC', '\xBA' ,'\xCD' };
+static const char box[] = {'\xDA', '\xBF','\xC0','\xD9','\xB3' ,'\xC4','\xC9','\xBB','\xC8', '\xBC', '\xBA' ,'\xCD'};
 
 enum class Color
 {
@@ -45,4 +45,3 @@ enum class MessageBoxReturn
 	Cancel,
 	Unclicked
 };
-

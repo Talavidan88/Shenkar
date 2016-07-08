@@ -1,16 +1,26 @@
 #include "NumericBox.h"
 
 
-NumericBox::NumericBox(uint32_t width, int32_t min, int32_t max) : Control(width, DEFAULT_HEIGHT, false, true), _value(width - 2), _minBtn(1), _maxBtn(1), _decOrInc(0), _min(min), _max(max)
+NumericBox::NumericBox(uint32_t width, int32_t min, int32_t max) : Control(width, DEFAULT_HEIGHT, false, true), _value(width - 2), _minBtn(1), _maxBtn(1), _min(min), _max(max), _minusListen(_minBtn, this), _plusListen(_maxBtn, this)
 {
 	_minBtn.setText("-");
-	_minBtn.addListener(*this);
+	_minBtn.addListener(_minusListen);
 	_maxBtn.setText("+");
-	_maxBtn.addListener(*this);
+	_maxBtn.addListener(_plusListen);
 }
 
 NumericBox::~NumericBox()
 {
+}
+
+int32_t NumericBox::getMin() const
+{
+	return _min;
+}
+
+int32_t NumericBox::getMax() const
+{
+	return _max;
 }
 
 int32_t NumericBox::getValue() const
@@ -35,13 +45,6 @@ bool NumericBox::setValue(int32_t value)
 	return false;
 }
 
-void NumericBox::MousePressed(Control& control, int x, int y, bool isLeft, Control* msCb)
-{
-	auto valAfterAction = std::stoi(_value.getText()) + _decOrInc;
-	if (valAfterAction >= _min && valAfterAction <= _max)
-		setValue(valAfterAction);
-}
-
 void NumericBox::draw(Graphics& g, uint32_t x, uint32_t y, uint32_t z) const
 {
 	if (getHidden()) return;
@@ -59,14 +62,12 @@ void NumericBox::mousePressed(uint32_t x, uint32_t y, bool isLeft)
 	if (getHidden()) return;
 	if (isInside(x, y, _maxBtn.getLeft(), _maxBtn.getTop(), _maxBtn.getWidth(), _maxBtn.getHeight())) // if + pressed
 	{
-		_decOrInc = 1;
 		_maxBtn.mousePressed(x, y, isLeft);
 		Control::setFocus(*this);
 	}
 	if (isInside(x, y, _minBtn.getLeft(), _minBtn.getTop(), _minBtn.getWidth(), _minBtn.getHeight())) // if - pressed
 	{
-		_decOrInc = -1;
-		_maxBtn.mousePressed(x, y, isLeft);
+		_minBtn.mousePressed(x, y, isLeft);
 		Control::setFocus(*this);
 	}
 }

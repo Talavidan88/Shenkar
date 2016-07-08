@@ -42,14 +42,14 @@ void CheckList::MousePressed(Control& control, int x, int y, bool isLeft, Contro
 {
 	auto ptr = dynamic_cast<Button*>(&control);
 	auto t = ptr->getText();
-	if (t[1] != BOXCHECK)	// not checked?
+	if (t[1] != BOXCHECK) // not checked?
 	{
-		t[1] = BOXCHECK;	// check it!
+		t[1] = BOXCHECK; // check it!
 		ptr->setText(t);
 	}
 	else
 	{
-		t[1] = BOXUNCHECK;	// uncheck.
+		t[1] = BOXUNCHECK; // uncheck.
 		ptr->setText(t);
 	}
 }
@@ -122,8 +122,8 @@ void CheckList::setForeground(Color color)
 
 void CheckList::selectOrDeselect(uint32_t index)
 {
-	if (std::find(_selected.begin(), _selected.end(), index) != _selected.end()) 
-		deselectIndex(index);	 // if found in selected vector, deselect.
+	if (std::find(_selected.begin(), _selected.end(), index) != _selected.end())
+		deselectIndex(index); // if found in selected vector, deselect.
 	else
-		selectIndex(index);		 // else select
+		selectIndex(index); // else select
 }

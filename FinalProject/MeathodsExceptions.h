@@ -41,6 +41,7 @@ public:
 		return _what.c_str();
 	}
 };
+
 class IndexOutOfBounds :
 	public MeathodsExceptions
 {

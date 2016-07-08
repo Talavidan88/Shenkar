@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include "Defines.h"
+
 /*
 *	Panel
 *	Derives Functions From Control.

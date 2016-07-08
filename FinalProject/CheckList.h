@@ -1,6 +1,7 @@
 #pragma once
 #include "AbstractBox.h"
 #include <algorithm>
+
 /*
 *	CheckList
 *	Derives Functions From AbstractBox.

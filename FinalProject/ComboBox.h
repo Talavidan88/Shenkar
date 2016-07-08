@@ -5,6 +5,7 @@
 #include "Defines.h"
 #include "Button.h"
 #include <algorithm>
+
 /*
 *	ComboBox
 *	Derives Functions From Control.
@@ -24,7 +25,7 @@ private:
 	// Holds Current Selected contorl inside ComboBox.
 	Button* _selectedControl;
 
- 	// Marks Current Entry.
+	// Marks Current Entry.
 	uint32_t _current;
 
 	// Variable to check whether ComboBox is open or closed. 
@@ -32,7 +33,7 @@ private:
 
 	// Variable to check whether ComboBox needs to be redrawed.
 	bool _redrawFlag;
-	
+
 	// Private function - manages layers and opens ComboBox.
 	void openBox(void);
 public:
@@ -87,7 +88,7 @@ public:
 
 	// Gets Height of control
 	uint32_t getHeight() const override;
-	
+
 
 	// Returns whether control needs to be redrawed. 
 	bool getRedrawFlag(void) const override;

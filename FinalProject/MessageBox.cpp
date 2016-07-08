@@ -10,7 +10,7 @@ MyMessageBox::MyMessageBox(uint32_t height, uint32_t width) : Control(width, hei
 	_cancel.setText("Cancel");
 	_cancel.addListener(*this);
 
-	setLayersToMax();	// show message box top of every control.
+	setLayersToMax(); // show message box top of every control.
 }
 
 

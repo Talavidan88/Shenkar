@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Control.h"
 #include "Defines.h"
+
 /*	
 *	Button
 *	Derives Functions From Control.

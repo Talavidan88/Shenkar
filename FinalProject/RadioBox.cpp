@@ -8,8 +8,8 @@ void RadioBox::ClearAstrix()
 	{
 		if (i == _selected) continue;
 		auto t = (*it)->getText();
-		if (t[0] == BOXCHECK)	// checked?
-			t[0] = BOXUNCHECK;	// uncheck box.
+		if (t[0] == BOXCHECK) // checked?
+			t[0] = BOXUNCHECK; // uncheck box.
 		(*it)->setText(t);
 	}
 }
@@ -31,7 +31,7 @@ size_t RadioBox::getSelectedIndex() const
 void RadioBox::setSelectedIndex(size_t index)
 {
 	if (index > _entries.size())
-		throw IndexOutOfBounds();	// Index is out of bounds. throw exception.
+		throw IndexOutOfBounds(); // Index is out of bounds. throw exception.
 	_selected = index;
 	Control* ptr = _entries[_selected];
 	MousePressed(*ptr, 0, 0, 0);
@@ -41,7 +41,7 @@ void RadioBox::MousePressed(Control& control, int x, int y, bool isLeft, Control
 {
 	auto* ptr = dynamic_cast<Button*>(&control);
 	auto t = ptr->getText();
-	if (t[0] != BOXCHECK) 
+	if (t[0] != BOXCHECK)
 	{
 		t[0] = BOXCHECK;
 		ptr->setText(t);

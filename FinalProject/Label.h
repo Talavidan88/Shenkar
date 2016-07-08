@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Defines.h"
 #include "Control.h"
+
 /*
 *	Label
 *	Derives Functions From Control.

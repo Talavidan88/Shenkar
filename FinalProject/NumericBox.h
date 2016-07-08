@@ -11,7 +11,7 @@
 *	Derives CB function - Button::MouseListener.
 *	Used to show and set NumericBox properties.
 */
-class NumericBox : public Control, public Button::MouseListener
+class NumericBox : public Control
 {
 private:
 	// Holds minimum value of control.
@@ -29,12 +29,61 @@ private:
 	// Button to increment.
 	Button _maxBtn;
 
-	// Variable to know wheher we need to increment of decrement value.
-	int32_t _decOrInc;
+	// Plus button callback
+	struct plusListener : public Button::MouseListener
+	{
+		plusListener(Control& c, NumericBox* wrapingObj) : _c(c), _wrappingObj(wrapingObj)
+		{
+		}
+
+		void MousePressed(Control& b, int x, int y, bool isLeft, Control* mbCb = nullptr) override
+		{
+			auto valAfterAction = _wrappingObj->getValue() + 1;
+			if (valAfterAction >= _wrappingObj->getMin() && valAfterAction <= _wrappingObj->getMax())
+				_wrappingObj->setValue(valAfterAction);
+		}
+
+	private:
+		Control& _c;
+		NumericBox* _wrappingObj;
+	};
+
+	// Minus button callback
+	struct minusListener : public Button::MouseListener
+	{
+		minusListener(Control& c, NumericBox* wrapingObj) : _c(c), _wrappingObj(wrapingObj)
+		{
+		}
+
+		void MousePressed(Control& b, int x, int y, bool isLeft, Control* mbCb = nullptr) override
+		{
+			auto valAfterAction = _wrappingObj->getValue() - 1;
+			if (valAfterAction >= _wrappingObj->getMin() && valAfterAction <= _wrappingObj->getMax())
+				_wrappingObj->setValue(valAfterAction);
+		}
+
+	private:
+		Control& _c;
+		NumericBox* _wrappingObj;
+	};
+
+	// Minus listener
+	minusListener _minusListen;
+
+	// Plus listener
+	plusListener _plusListen;
 public:
 	// Constructor.  _In: witdh - width of control, min - minumum value of control, max - maximum value of control.
 	NumericBox(uint32_t width, int32_t min, int32_t max);
 	~NumericBox();
+
+
+	// Returns min value of control.
+	int32_t getMin() const;
+
+
+	// Returns max value of control.
+	int32_t getMax() const;
 
 
 	// Returns value of control.
@@ -72,9 +121,4 @@ public:
 
 	// Sets foreground of control. _In: color - color enum to be selected.
 	void setForeground(Color color) override;
-
-
-	// Inherited via MouseListener
-	// CallBack Function when a messagebox button is pressed.
-	virtual void MousePressed(Control& control, int x, int y, bool isLeft, Control* msCb = nullptr) override;
 };

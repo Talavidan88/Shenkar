@@ -1,11 +1,11 @@
 ﻿#include "Borders.h"
 #include <iostream>
+
 void drawMe(Graphics& g, uint32_t left, uint32_t top, uint32_t width, uint32_t height, BorderType bt)
 {
 	g.setBackground(Color::Black);
 	int32_t a, col, row;
 	auto style = (static_cast<int>(bt) - 1) * 6;
-
 
 
 	char tl, tr, bl, br, side, edge, shadow;

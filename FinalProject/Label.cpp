@@ -19,7 +19,7 @@ void Label::setText(std::string value)
 		_value = value;
 	}
 	else
-		throw StringWiderThenWidthOfControl();						   // if string is wider then control throw exception.
+		throw StringWiderThenWidthOfControl(); // if string is wider then control throw exception.
 }
 
 std::string Label::getText(void) const

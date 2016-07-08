@@ -2,6 +2,7 @@
 #include "IControl.h"
 #include <vector>
 #include "SimpleBorderFactory.h"
+
 /*	==================== ABSTRACT!! =================================
 *	Abstract Box - This class is the base class for CheckList and RadioBox.
 *	Derives Functions From IControl.
@@ -74,7 +75,7 @@ public:
 	// Sets Control in focus. _In: control[ref] - control to be focused.
 	static void setFocus(Control& control);
 
-	
+
 	// Returns whether control can gain focus.
 	virtual bool canGetFocus() const;
 
@@ -93,7 +94,7 @@ public:
 	// Sets controls coords. _In: x - X Coords, y - Y Coords.
 	void setCoords(uint32_t x, uint32_t y) override;
 
-	
+
 	// Returns control's coords.
 	COORD getCoords(void) const;
 
@@ -101,7 +102,7 @@ public:
 	// Returns Current cursor position. - unimplemented polymorphic. 
 	virtual uint32_t getCursorPosition(void) const;
 
-	
+
 	// Returns control's width.
 	uint32_t getWidth(void) const;
 
@@ -121,11 +122,11 @@ public:
 	// Returns y coords.
 	uint32_t getTop(void) const;
 
-	
+
 	// Sets control's layer. _In: layer - layer to be set/
 	void setLayer(uint32_t layer);
 
-	
+
 	// Returns control's layer.
 	uint32_t getLayer(void) const;
 
@@ -157,7 +158,7 @@ public:
 	// Shows contorl
 	virtual void Show(void);
 
-	
+
 	// Hides contorl.
 	virtual void Hide(void);
 
@@ -186,7 +187,7 @@ public:
 	// Set border type. _In: bt - bordertype enum.
 	virtual void setBorder(BorderType bt);
 
-	
+
 	// Sets Border Drawer cb function.
 	virtual void setBorderDrawer(const BorderDrawer& borderDrawer)
 	{
