@@ -13,8 +13,11 @@
  - API is identical to published skeleton.
 
  - We decided not to implement inheritance for compound controls, as NumberBox **is-not a** panel. therefore we decided to use composition.
+ 
  - Previous versions are available, For current version please go to **Final Project**.
+ 
  - Final Project has a main file using Michael's main exemple.
+ 
  - Running this project is only possible on windows machines. (duh!)
  
 ### Usage:
